@@ -188,7 +188,7 @@
     <Content Include="Views\Profile\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Repository\EFModel.csproj">
+    <ProjectReference Include="..\EFModel\EFModel.csproj">
       <Project>{DA00ACC7-8E03-42E3-83D5-5997867E5BFE}</Project>
       <Name>EFModel</Name>
     </ProjectReference>

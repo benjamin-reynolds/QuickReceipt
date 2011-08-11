@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceReferences", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickReceipt", "QuickReceipt\QuickReceipt.csproj", "{21E1972A-5AA1-46A3-9068-58EE7EECD7CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFModel", "Repository\EFModel.csproj", "{DA00ACC7-8E03-42E3-83D5-5997867E5BFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFModel", "EFModel\EFModel.csproj", "{DA00ACC7-8E03-42E3-83D5-5997867E5BFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
