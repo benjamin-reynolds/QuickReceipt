@@ -1,0 +1,7 @@
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ShippingQRWeb\bin\ShippingQRWeb.dll
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ShippingQRWeb\bin\ShippingQRWeb.pdb
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ShippingQRWeb\bin\EntityFramework.dll
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ShippingQRWeb\bin\EntityFramework.xml
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ShippingQRWeb\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ShippingQRWeb\obj\Debug\ShippingQRWeb.dll
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ShippingQRWeb\obj\Debug\ShippingQRWeb.pdb

@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<ul>
+    <li>@Html.ActionLink("Associate PO to QR Code", "Scan", "PurchaseOrder")</li>
+    <li>@Html.ActionLink("View Recent POs", "Index", "PurchaseOrder")</li>
+    <li>@Html.ActionLink("Admin Page", "Index", "Admin")</li>
+</ul>

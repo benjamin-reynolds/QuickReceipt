@@ -1,0 +1,59 @@
+﻿@model IEnumerable<QuickReceipt.Models.PurchaseOrder>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Purchase Orders</h2>
+
+@Html.ActionLink("Associate PO to QR Code", "Scan", "PurchaseOrder")
+<br />
+<br />
+<div>
+<table>
+    <tr>
+        <th>
+            PO #
+        </th>
+        <th>
+            PO Date
+        </th>
+        <th>
+            Payment Terms
+        </th>
+        <th>
+            Freight Terms
+        </th>
+        <th>
+            Ship Via
+        </th>
+        <th>
+            Tracking Number
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.PurchaseOrderNumber.ToString(), "Details", new { id=item.PurchaseOrderNumber })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PODate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentTerms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FreightTerms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipVia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackingNumber)
+        </td>
+    </tr>
+}
+
+</table>
+</div>

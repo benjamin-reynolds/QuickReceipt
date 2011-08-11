@@ -1,0 +1,56 @@
+﻿@model IEnumerable<QuickReceipt.Models.Profile>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Profiles</h2>
+
+<p>
+    @Html.ActionLink("Add a new Profile", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Name
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Item
+        </th>
+        <th>
+            Issue
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Issue.Description)
+        </td>
+    </tr>
+}
+
+</table>

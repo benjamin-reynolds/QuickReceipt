@@ -1,0 +1,5 @@
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\bin\Debug\Repository.dll
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\bin\Debug\Repository.pdb
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\obj\Debug\Repository.dll
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\obj\Debug\Repository.pdb

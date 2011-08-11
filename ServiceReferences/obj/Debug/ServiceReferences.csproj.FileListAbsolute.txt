@@ -1,0 +1,10 @@
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ServiceReferences\bin\Debug\ServiceReferences.dll
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ServiceReferences\bin\Debug\ServiceReferences.pdb
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ServiceReferences\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ServiceReferences\obj\Debug\ServiceReferences.dll
+C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ServiceReferences\obj\Debug\ServiceReferences.pdb
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\ServiceReferences\bin\Debug\ServiceReferences.dll
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\ServiceReferences\bin\Debug\ServiceReferences.pdb
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\ServiceReferences\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\ServiceReferences\obj\Debug\ServiceReferences.dll
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\ServiceReferences\obj\Debug\ServiceReferences.pdb

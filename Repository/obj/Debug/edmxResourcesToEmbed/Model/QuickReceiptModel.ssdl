@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuickReceiptModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="QuickReceiptModelStoreContainer">
+    <EntitySet Name="Profile" EntityType="QuickReceiptModel.Store.Profile" store:Type="Tables" store:Schema="dbo" store:Name="Profile">
+      <DefiningQuery>SELECT 
+      [Profile].[Id] AS [Id], 
+      [Profile].[Name] AS [Name], 
+      [Profile].[CategoryId] AS [CategoryId], 
+      [Profile].[CategoryDescription] AS [CategoryDescription], 
+      [Profile].[TypeId] AS [TypeId], 
+      [Profile].[TypeDescription] AS [TypeDescription], 
+      [Profile].[ItemId] AS [ItemId], 
+      [Profile].[ItemDescription] AS [ItemDescription], 
+      [Profile].[IssueId] AS [IssueId], 
+      [Profile].[IssueDescrption] AS [IssueDescrption]
+      FROM [dbo].[Profile] AS [Profile]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'QuickReceipt.dbo.Profile' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="CategoryId" />
+      <PropertyRef Name="CategoryDescription" />
+      <PropertyRef Name="TypeId" />
+      <PropertyRef Name="TypeDescription" />
+      <PropertyRef Name="ItemId" />
+      <PropertyRef Name="ItemDescription" />
+      <PropertyRef Name="IssueId" />
+      <PropertyRef Name="IssueDescrption" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryDescription" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="TypeDescription" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="ItemDescription" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="IssueId" Type="int" Nullable="false" />
+    <Property Name="IssueDescrption" Type="nvarchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+</Schema>

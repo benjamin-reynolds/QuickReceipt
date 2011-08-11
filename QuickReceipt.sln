@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceReferences", "ServiceReferences\ServiceReferences.csproj", "{2512EAED-0828-43F0-A13D-A6F3DCF876DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickReceipt", "QuickReceipt\QuickReceipt.csproj", "{21E1972A-5AA1-46A3-9068-58EE7EECD7CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFModel", "Repository\EFModel.csproj", "{DA00ACC7-8E03-42E3-83D5-5997867E5BFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2512EAED-0828-43F0-A13D-A6F3DCF876DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2512EAED-0828-43F0-A13D-A6F3DCF876DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2512EAED-0828-43F0-A13D-A6F3DCF876DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2512EAED-0828-43F0-A13D-A6F3DCF876DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E1972A-5AA1-46A3-9068-58EE7EECD7CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E1972A-5AA1-46A3-9068-58EE7EECD7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E1972A-5AA1-46A3-9068-58EE7EECD7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E1972A-5AA1-46A3-9068-58EE7EECD7CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA00ACC7-8E03-42E3-83D5-5997867E5BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA00ACC7-8E03-42E3-83D5-5997867E5BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA00ACC7-8E03-42E3-83D5-5997867E5BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA00ACC7-8E03-42E3-83D5-5997867E5BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

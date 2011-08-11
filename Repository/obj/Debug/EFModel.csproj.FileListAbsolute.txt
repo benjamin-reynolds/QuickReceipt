@@ -1,0 +1,6 @@
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\bin\Debug\EFModel.dll.config
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\bin\Debug\EFModel.dll
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\bin\Debug\EFModel.pdb
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\obj\Debug\EFModel.dll
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\Repository\obj\Debug\EFModel.pdb

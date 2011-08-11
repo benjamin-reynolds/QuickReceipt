@@ -1,0 +1,21 @@
+﻿@model QuickReceipt.Models.PurchaseOrder
+
+@{
+    ViewBag.Title = "Scan";
+}
+
+<h2>Associate QR Code to PO Number</h2>
+@using (Html.BeginForm()) {
+@Html.Label("PO Number")<br />
+@Html.TextBoxFor(model => model.PurchaseOrderNumberDisplay)
+<br /><br />
+
+@Html.Label("Profile")<br />
+@Html.DropDownList("ProfileId", new SelectList(ViewBag.Profiles as System.Collections.IEnumerable, "Id", "Name", Model.ProfileId))
+<br /><br />
+
+@Html.CheckBox("GroupQR Code", false) @Html.Label("Group QR Code")
+<br /><br />
+
+<input type="submit" value="Scan" />
+}

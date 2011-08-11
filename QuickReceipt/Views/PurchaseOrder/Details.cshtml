@@ -1,0 +1,226 @@
+﻿@model QuickReceipt.Models.PurchaseOrder
+@{
+    ViewBag.Title = "Details";
+}
+<script src="@Url.Content("~/Scripts/Signature.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/canvas2image.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/base64.js")" type="text/javascript"></script>
+
+<h2>PURCHASE ORDER @Html.DisplayFor(model => model.PurchaseOrderNumber)</h2>
+
+    <div id="container">
+    <style type="text/css"><!--
+      #container { position: relative; }
+      #imageView { border: 1px solid #000; }
+    --></style>
+      <canvas id="imageView" width="600" height="200">
+        <p>Unfortunately, your browser is currently unsupported by our web 
+        application.  We are sorry for the inconvenience. Please use one of the 
+        supported browsers listed below, or draw the image you want using an 
+        offline tool.</p>
+        <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a 
+          href="http://www.mozilla.com">Firefox</a>, <a 
+          href="http://www.apple.com/safari">Safari</a>, and <a 
+          href="http://www.konqueror.org">Konqueror</a>.</p>
+
+      </canvas><br />
+      <input type="button" id="save" value="Save Signature">
+    </div>
+    <br /><br />
+
+@using (Html.BeginForm())
+{
+<table>
+<tr>
+<td>Vendor</td>
+<td>Ship To</td>
+<td>Bill To</td>
+<td>Details</td>
+</tr>
+<tr>
+<td valign="top">
+<table>
+    <tr>
+        <td>Vendor Name</td>
+    </tr>
+    <tr>
+        <td>Addr Line 1</td>
+    </tr>
+    <tr>
+        <td>Addr Line 2</td>
+    </tr>
+    <tr>
+        <td>Addr Line 3</td>
+    </tr>
+    <tr>
+        <td>Addr Line 4</td>
+    </tr>
+    <tr>
+        <td>Addr Phone</td>
+    </tr>
+    <tr>
+        <td>Addr Fax</td>
+    </tr>
+</table>
+</td>
+<td valign="top">
+<table>
+    <tr>
+        <td>Ship To Name</td>
+    </tr>
+    <tr>
+        <td>Addr Line 1</td>
+    </tr>
+    <tr>
+        <td>Addr Line 2</td>
+    </tr>
+    <tr>
+        <td>Addr Line 3</td>
+    </tr>
+    <tr>
+        <td>Addr Line 4</td>
+    </tr>
+    <tr>
+        <td>Addr Phone</td>
+    </tr>
+    <tr>
+        <td>Addr Fax</td>
+    </tr>
+</table>
+</td>
+<td valign="top">
+<table>
+    <tr>
+        <td>Bill To Name</td>
+    </tr>
+    <tr>
+        <td>Addr Line 1</td>
+    </tr>
+    <tr>
+        <td>Addr Line 2</td>
+    </tr>
+    <tr>
+        <td>Addr Line 3</td>
+    </tr>
+    <tr>
+        <td>Addr Line 4</td>
+    </tr>
+    <tr>
+        <td>Addr Phone</td>
+    </tr>
+    <tr>
+        <td>Addr Fax</td>
+    </tr>
+</table>
+</td>
+<td valign="top">
+<table>
+    <tr>
+        <td>
+            @Html.Label("PO Date")
+        </td>
+        <td>
+            @Model.PODate
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Payment Terms")
+        </td>
+        <td>
+            @Model.PaymentTerms
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Freight Terms")
+        </td>
+        <td>
+            @Model.FreightTerms
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Ship Via")
+        </td>
+        <td>
+            @Model.ShipVia
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Tracking No")
+        </td>
+        <td>
+            @Model.TrackingNumber
+        </td>
+    </tr>
+</table>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>Accounting</td>
+<td>Item No</td>
+<td>Description</td>
+<td>Qty</td>
+<td>Unit</td>
+<td>Extended</td>
+</tr>
+@foreach (var li in Model.LineItems)
+{
+<tr>
+<td>@Html.CheckBox("Received", li.Received)</td>
+<td>@li.AccountingInfo</td>
+<td>@li.ItemNumber</td>
+<td>@li.Description</td>
+<td>@li.Quantity</td>
+<td>@li.UnitPrice</td>
+<td>@li.TotalPrice</td>
+</tr>
+}
+<tr align="right">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+    <td>Subtotal</td>
+    <td>@Model.Subtotal</td>
+</tr>
+<tr align="right">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+    <td>Tax</td>
+    <td>@Model.Tax</td>
+</tr>
+<tr align="right">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+    <td>Total</td>
+    <td>@Model.Total</td>
+</tr>
+</table>
+<br /><br />
+
+@Html.Label("Work Order Notes")<br />
+@Html.TextArea("WorkOrderText", "", 10, 80, Model.WorkOrderText)
+@*<textarea id="WorkOrderNotes" rows="10" cols="80"></textarea>*@
+
+<p>
+<input type="submit" value="Save Changes" />
+<input type="submit" value="Save and Close Ticket" />
+<input type="submit" value="Save and Move Ticket" />
+</p>
+    
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
