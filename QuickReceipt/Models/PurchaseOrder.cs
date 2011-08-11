@@ -13,6 +13,8 @@ namespace QuickReceipt.Models
 
         public int PurchaseOrderNumber { get; set; }
 
+        public bool GroupQRCode { get; set; }
+
         public string PurchaseOrderNumberDisplay 
         { 
             get 

@@ -7,6 +7,11 @@
     <Schema Namespace="QuickReceiptModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="QuickReceiptModelStoreContainer">
           <EntitySet Name="Profile" EntityType="QuickReceiptModel.Store.Profile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PurchaseOrder" EntityType="QuickReceiptModel.Store.PurchaseOrder" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_PurchaseOrder_Profile" Association="QuickReceiptModel.Store.FK_PurchaseOrder_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Profile">
           <Key>
@@ -19,12 +24,40 @@
           <Property Name="ItemId" Type="int" Nullable="false" />
           <Property Name="IssueId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="PurchaseOrder">
+          <Key>
+            <PropertyRef Name="QRCodeId" />
+          </Key>
+          <Property Name="QRCodeId" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="PurchaseOrderId" Type="int" />
+          <Property Name="ProfileId" Type="int" />
+          <Property Name="VendorId" Type="int" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="GroupQRCode" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PurchaseOrder_Profile">
+          <End Role="Profile" Type="QuickReceiptModel.Store.Profile" Multiplicity="0..1" />
+          <End Role="PurchaseOrder" Type="QuickReceiptModel.Store.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuickReceiptModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="QuickReceiptEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Profiles" EntityType="QuickReceiptModel.Profile" />
+          <EntitySet Name="PurchaseOrders" EntityType="QuickReceiptModel.PurchaseOrder" />
+          <AssociationSet Name="FK_PurchaseOrder_Profile" Association="QuickReceiptModel.FK_PurchaseOrder_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Profile">
           <Key>
@@ -36,7 +69,32 @@
           <Property Type="Int32" Name="TypeId" Nullable="false" />
           <Property Type="Int32" Name="ItemId" Nullable="false" />
           <Property Type="Int32" Name="IssueId" Nullable="false" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="QuickReceiptModel.FK_PurchaseOrder_Profile" FromRole="Profile" ToRole="PurchaseOrder" />
         </EntityType>
+        <EntityType Name="PurchaseOrder">
+          <Key>
+            <PropertyRef Name="QRCodeId" />
+          </Key>
+          <Property Type="String" Name="QRCodeId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PurchaseOrderId" />
+          <Property Type="Int32" Name="ProfileId" />
+          <Property Type="Int32" Name="VendorId" />
+          <Property Type="Int32" Name="GroupId" />
+          <Property Type="Boolean" Name="GroupQRCode" Nullable="false" />
+          <NavigationProperty Name="Profile" Relationship="QuickReceiptModel.FK_PurchaseOrder_Profile" FromRole="PurchaseOrder" ToRole="Profile" />
+        </EntityType>
+        <Association Name="FK_PurchaseOrder_Profile">
+          <End Type="QuickReceiptModel.Profile" Role="Profile" Multiplicity="0..1" />
+          <End Type="QuickReceiptModel.PurchaseOrder" Role="PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -52,6 +110,18 @@
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrders">
+            <EntityTypeMapping TypeName="QuickReceiptModel.PurchaseOrder">
+              <MappingFragment StoreEntitySet="PurchaseOrder">
+                <ScalarProperty Name="GroupQRCode" ColumnName="GroupQRCode" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+                <ScalarProperty Name="QRCodeId" ColumnName="QRCodeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -77,6 +147,11 @@
     <Diagrams>
       <Diagram Name="QuickReceiptModel">
         <EntityTypeShape EntityType="QuickReceiptModel.Profile" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="QuickReceiptModel.PurchaseOrder" Width="1.5" PointX="3" PointY="0.75" Height="2.3648893229166656" />
+        <AssociationConnector Association="QuickReceiptModel.FK_PurchaseOrder_Profile" >
+          <ConnectorPoint PointX="2.25" PointY="1.9324446614583328" />
+          <ConnectorPoint PointX="3" PointY="1.9324446614583328" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

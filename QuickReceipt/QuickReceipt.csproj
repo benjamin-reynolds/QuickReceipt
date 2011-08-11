@@ -82,10 +82,12 @@
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\GroupRepository.cs" />
     <Compile Include="Repositories\IssueRepository.cs" />
     <Compile Include="Repositories\ItemRepository.cs" />
     <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Repositories\TypeRepository.cs" />
+    <Compile Include="Repositories\VendorRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

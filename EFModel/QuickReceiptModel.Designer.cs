@@ -16,6 +16,11 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("QuickReceiptModel", "FK_PurchaseOrder_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(EFModel.Profile), "PurchaseOrder", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(EFModel.PurchaseOrder), true)]
+
+#endregion
 
 namespace EFModel
 {
@@ -80,6 +85,22 @@ namespace EFModel
             }
         }
         private ObjectSet<Profile> _Profiles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PurchaseOrder> PurchaseOrders
+        {
+            get
+            {
+                if ((_PurchaseOrders == null))
+                {
+                    _PurchaseOrders = base.CreateObjectSet<PurchaseOrder>("PurchaseOrders");
+                }
+                return _PurchaseOrders;
+            }
+        }
+        private ObjectSet<PurchaseOrder> _PurchaseOrders;
 
         #endregion
         #region AddTo Methods
@@ -90,6 +111,14 @@ namespace EFModel
         public void AddToProfiles(Profile profile)
         {
             base.AddObject("Profiles", profile);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PurchaseOrders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPurchaseOrders(PurchaseOrder purchaseOrder)
+        {
+            base.AddObject("PurchaseOrders", purchaseOrder);
         }
 
         #endregion
@@ -283,6 +312,249 @@ namespace EFModel
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("QuickReceiptModel", "FK_PurchaseOrder_Profile", "PurchaseOrder")]
+        public EntityCollection<PurchaseOrder> PurchaseOrders
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PurchaseOrder>("QuickReceiptModel.FK_PurchaseOrder_Profile", "PurchaseOrder");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PurchaseOrder>("QuickReceiptModel.FK_PurchaseOrder_Profile", "PurchaseOrder", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="QuickReceiptModel", Name="PurchaseOrder")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PurchaseOrder : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PurchaseOrder object.
+        /// </summary>
+        /// <param name="qRCodeId">Initial value of the QRCodeId property.</param>
+        /// <param name="groupQRCode">Initial value of the GroupQRCode property.</param>
+        public static PurchaseOrder CreatePurchaseOrder(global::System.String qRCodeId, global::System.Boolean groupQRCode)
+        {
+            PurchaseOrder purchaseOrder = new PurchaseOrder();
+            purchaseOrder.QRCodeId = qRCodeId;
+            purchaseOrder.GroupQRCode = groupQRCode;
+            return purchaseOrder;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String QRCodeId
+        {
+            get
+            {
+                return _QRCodeId;
+            }
+            set
+            {
+                if (_QRCodeId != value)
+                {
+                    OnQRCodeIdChanging(value);
+                    ReportPropertyChanging("QRCodeId");
+                    _QRCodeId = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("QRCodeId");
+                    OnQRCodeIdChanged();
+                }
+            }
+        }
+        private global::System.String _QRCodeId;
+        partial void OnQRCodeIdChanging(global::System.String value);
+        partial void OnQRCodeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PurchaseOrderId
+        {
+            get
+            {
+                return _PurchaseOrderId;
+            }
+            set
+            {
+                OnPurchaseOrderIdChanging(value);
+                ReportPropertyChanging("PurchaseOrderId");
+                _PurchaseOrderId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PurchaseOrderId");
+                OnPurchaseOrderIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PurchaseOrderId;
+        partial void OnPurchaseOrderIdChanging(Nullable<global::System.Int32> value);
+        partial void OnPurchaseOrderIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ProfileId
+        {
+            get
+            {
+                return _ProfileId;
+            }
+            set
+            {
+                OnProfileIdChanging(value);
+                ReportPropertyChanging("ProfileId");
+                _ProfileId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProfileId");
+                OnProfileIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ProfileId;
+        partial void OnProfileIdChanging(Nullable<global::System.Int32> value);
+        partial void OnProfileIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VendorId
+        {
+            get
+            {
+                return _VendorId;
+            }
+            set
+            {
+                OnVendorIdChanging(value);
+                ReportPropertyChanging("VendorId");
+                _VendorId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VendorId");
+                OnVendorIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VendorId;
+        partial void OnVendorIdChanging(Nullable<global::System.Int32> value);
+        partial void OnVendorIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> GroupId
+        {
+            get
+            {
+                return _GroupId;
+            }
+            set
+            {
+                OnGroupIdChanging(value);
+                ReportPropertyChanging("GroupId");
+                _GroupId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GroupId");
+                OnGroupIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _GroupId;
+        partial void OnGroupIdChanging(Nullable<global::System.Int32> value);
+        partial void OnGroupIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean GroupQRCode
+        {
+            get
+            {
+                return _GroupQRCode;
+            }
+            set
+            {
+                OnGroupQRCodeChanging(value);
+                ReportPropertyChanging("GroupQRCode");
+                _GroupQRCode = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GroupQRCode");
+                OnGroupQRCodeChanged();
+            }
+        }
+        private global::System.Boolean _GroupQRCode;
+        partial void OnGroupQRCodeChanging(global::System.Boolean value);
+        partial void OnGroupQRCodeChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("QuickReceiptModel", "FK_PurchaseOrder_Profile", "Profile")]
+        public Profile Profile
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("QuickReceiptModel.FK_PurchaseOrder_Profile", "Profile").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("QuickReceiptModel.FK_PurchaseOrder_Profile", "Profile").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Profile> ProfileReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("QuickReceiptModel.FK_PurchaseOrder_Profile", "Profile");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Profile>("QuickReceiptModel.FK_PurchaseOrder_Profile", "Profile", value);
+                }
+            }
+        }
+
+        #endregion
     }
 
     #endregion
