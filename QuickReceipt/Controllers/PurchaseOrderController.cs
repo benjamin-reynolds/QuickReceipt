@@ -4,11 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QuickReceipt.Models;
+using QuickReceipt.Repositories;
 
 namespace QuickReceipt.Controllers
 {
     public class PurchaseOrderController : Controller
     {
+        ProfileRepository ProfileRepository = new ProfileRepository();
+
         List<PurchaseOrder> purchaseOrders = new List<PurchaseOrder>()
             //{
             //    new PurchaseOrder() { Id = 1, PurchaseOrderNumber = 105809, PODate = new DateTime(2011, 7, 12), PaymentTerms = "Net 30", FreightTerms = "Origin", TrackingNumber = "TTS000003501097", ShipVia = "2nd Day", LineItems = new List<LineItem>() },
@@ -90,12 +93,7 @@ namespace QuickReceipt.Controllers
 
         public ActionResult Scan()
         {
-            List<Profile> profiles = new List<Profile>();
-            profiles.Add(new Profile());
-            profiles.Add(new Profile() { Id = 1, Name = "Laptop" });
-            profiles.Add(new Profile() { Id = 2, Name = "Blackberry" });
-            profiles.Add(new Profile() { Id = 3, Name = "iPhone" });
-            ViewBag.Profiles = profiles;
+            ViewBag.Profiles = ProfileRepository.List();
 
             PurchaseOrder po = new PurchaseOrder();
             return View(po);

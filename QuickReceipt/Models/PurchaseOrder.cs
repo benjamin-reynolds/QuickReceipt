@@ -9,6 +9,8 @@ namespace QuickReceipt.Models
     {
         public int Id { get; set; }
 
+        public string QRCode { get; set; }
+
         public int PurchaseOrderNumber { get; set; }
 
         public string PurchaseOrderNumberDisplay 
@@ -69,6 +71,40 @@ namespace QuickReceipt.Models
                     Profile = new Profile();
 
                 Profile.Id = value;
+            }
+        }
+
+        public Vendor Vendor { get; set; }
+
+        public int VendorId
+        {
+            get
+            {
+                return (Vendor == null ? 0 : Vendor.Id);
+            }
+            set
+            {
+                if (Vendor == null)
+                    Vendor = new Vendor();
+
+                Vendor.Id = value;
+            }
+        }
+
+        public Group Group { get; set; }
+
+        public int GroupId
+        {
+            get
+            {
+                return (Group == null ? 0 : Group.Id);
+            }
+            set
+            {
+                if (Group == null)
+                    Group = new Group();
+
+                Group.Id = value;
             }
         }
     }
