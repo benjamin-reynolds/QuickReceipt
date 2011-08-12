@@ -125,7 +125,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -146,7 +146,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="QuickReceiptModel">
-        <EntityTypeShape EntityType="QuickReceiptModel.Profile" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="QuickReceiptModel.Profile" Width="1.5" PointX="0.75" PointY="0.75" Height="2.172587890625" />
         <EntityTypeShape EntityType="QuickReceiptModel.PurchaseOrder" Width="1.5" PointX="3" PointY="0.75" Height="2.3648893229166656" />
         <AssociationConnector Association="QuickReceiptModel.FK_PurchaseOrder_Profile" >
           <ConnectorPoint PointX="2.25" PointY="1.9324446614583328" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace QuickReceipt.Models
 {
@@ -11,15 +12,16 @@ namespace QuickReceipt.Models
 
         public string QRCode { get; set; }
 
-        public int PurchaseOrderNumber { get; set; }
+        [Required(ErrorMessage="You must associate a Purchase Order Number")]
+        public int? PurchaseOrderNumber { get; set; }
 
         public bool GroupQRCode { get; set; }
 
         public string PurchaseOrderNumberDisplay 
         { 
             get 
-            { 
-                return (PurchaseOrderNumber == 0 ? "" : PurchaseOrderNumber.ToString()); 
+            {
+                return (PurchaseOrderNumber.HasValue ? PurchaseOrderNumber.Value.ToString() : ""); 
             }
             set
             {

@@ -70,6 +70,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mappers\ProfileMapper.cs" />
+    <Compile Include="Mappers\PurchaseOrderMapper.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Group.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Repositories\IssueRepository.cs" />
     <Compile Include="Repositories\ItemRepository.cs" />
     <Compile Include="Repositories\ProfileRepository.cs" />
+    <Compile Include="Repositories\PurchaseOrderRepository.cs" />
     <Compile Include="Repositories\TypeRepository.cs" />
     <Compile Include="Repositories\VendorRepository.cs" />
   </ItemGroup>

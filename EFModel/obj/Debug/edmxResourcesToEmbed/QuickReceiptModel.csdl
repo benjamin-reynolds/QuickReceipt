@@ -2,6 +2,11 @@
 <Schema Namespace="QuickReceiptModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="QuickReceiptEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Profiles" EntityType="QuickReceiptModel.Profile" />
+    <EntitySet Name="PurchaseOrders" EntityType="QuickReceiptModel.PurchaseOrder" />
+    <AssociationSet Name="FK_PurchaseOrder_Profile" Association="QuickReceiptModel.FK_PurchaseOrder_Profile">
+      <End Role="Profile" EntitySet="Profiles" />
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Profile">
     <Key>
@@ -13,5 +18,30 @@
     <Property Type="Int32" Name="TypeId" Nullable="false" />
     <Property Type="Int32" Name="ItemId" Nullable="false" />
     <Property Type="Int32" Name="IssueId" Nullable="false" />
+    <NavigationProperty Name="PurchaseOrders" Relationship="QuickReceiptModel.FK_PurchaseOrder_Profile" FromRole="Profile" ToRole="PurchaseOrder" />
   </EntityType>
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="QRCodeId" />
+    </Key>
+    <Property Type="String" Name="QRCodeId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="PurchaseOrderId" />
+    <Property Type="Int32" Name="ProfileId" />
+    <Property Type="Int32" Name="VendorId" />
+    <Property Type="Int32" Name="GroupId" />
+    <Property Type="Boolean" Name="GroupQRCode" Nullable="false" />
+    <NavigationProperty Name="Profile" Relationship="QuickReceiptModel.FK_PurchaseOrder_Profile" FromRole="PurchaseOrder" ToRole="Profile" />
+  </EntityType>
+  <Association Name="FK_PurchaseOrder_Profile">
+    <End Type="QuickReceiptModel.Profile" Role="Profile" Multiplicity="0..1" />
+    <End Type="QuickReceiptModel.PurchaseOrder" Role="PurchaseOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseOrder">
+        <PropertyRef Name="ProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

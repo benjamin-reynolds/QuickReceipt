@@ -5,7 +5,7 @@ using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Text;
 
-namespace Repository.Model
+namespace EFModel
 {
     public static class ModelExtensions
     {

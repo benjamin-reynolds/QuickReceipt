@@ -13,6 +13,14 @@
 @Html.Label("Profile")<br />
 @Html.DropDownList("ProfileId", new SelectList(ViewBag.Profiles as System.Collections.IEnumerable, "Id", "Name", Model.ProfileId))
 <br /><br />
+    
+@Html.Label("Vendor")<br />
+@Html.DropDownList("VendorId", new SelectList(ViewBag.Vendors as System.Collections.IEnumerable, "Id", "Description", Model.VendorId))
+<br /><br />
+    
+@Html.Label("Group")<br />
+@Html.DropDownList("GroupId", new SelectList(ViewBag.Groups as System.Collections.IEnumerable, "Id", "Description", Model.GroupId))
+<br /><br />
 
 @Html.CheckBox("GroupQR Code", false) @Html.Label("Group QR Code")
 <br /><br />

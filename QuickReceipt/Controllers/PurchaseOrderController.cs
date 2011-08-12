@@ -10,54 +10,18 @@ namespace QuickReceipt.Controllers
 {
     public class PurchaseOrderController : Controller
     {
+        PurchaseOrderRepository PurchaseOrderRepository = new PurchaseOrderRepository();
         ProfileRepository ProfileRepository = new ProfileRepository();
-
-        List<PurchaseOrder> purchaseOrders = new List<PurchaseOrder>()
-            //{
-            //    new PurchaseOrder() { Id = 1, PurchaseOrderNumber = 105809, PODate = new DateTime(2011, 7, 12), PaymentTerms = "Net 30", FreightTerms = "Origin", TrackingNumber = "TTS000003501097", ShipVia = "2nd Day", LineItems = new List<LineItem>() },
-            //    new PurchaseOrder() { Id = 2, PurchaseOrderNumber = 105923, PODate = new DateTime(2011, 7, 15), PaymentTerms = "Net 30", FreightTerms = "Origin", TrackingNumber = "TTS000003501233", ShipVia = "Next Day Air", LineItems = new List<LineItem>() },
-            //    new PurchaseOrder() { Id = 2, PurchaseOrderNumber = 105966, PODate = new DateTime(2011, 7, 16), PaymentTerms = "Net 30", FreightTerms = "Bulk", TrackingNumber = "TTS000003501256", ShipVia = "Ground", LineItems = new List<LineItem>() },
-            //}
-            ;
-
-        private void SetUpTestData()
-        {
-            purchaseOrders = new List<PurchaseOrder>();
-
-            var po = new PurchaseOrder() { Id = 1, PurchaseOrderNumber = 105809, PODate = new DateTime(2011, 7, 12), PaymentTerms = "Net 30", FreightTerms = "Origin", TrackingNumber = "TTS000003501097", ShipVia = "2nd Day", LineItems = new List<LineItem>() };
-            var li = new LineItem() { Id = 1, AccountingInfo = "1234 / 123412344 / 123123", ItemNumber = "asdf12343l", Description = "Some electronics!", Quantity = 2, UnitPrice = 55.34M, PurchaseOrder = po, Received = false };
-            po.LineItems.Add(li);
-            purchaseOrders.Add(po);
-
-            po = new PurchaseOrder() { Id = 2, PurchaseOrderNumber = 105923, PODate = new DateTime(2011, 7, 15), PaymentTerms = "Net 30", FreightTerms = "Origin", TrackingNumber = "TTS000003501233", ShipVia = "Next Day Air", LineItems = new List<LineItem>() };
-            li = new LineItem() { Id = 2, AccountingInfo = "1234 / 123412344 / 123123", ItemNumber = "asdf12343l", Description = "Some electronics!", Quantity = 2, UnitPrice = 55.34M, PurchaseOrder = po, Received = true };
-            po.LineItems.Add(li);
-            li = new LineItem() { Id = 3, AccountingInfo = "1234 / 123412344 / 123123", ItemNumber = "asdf12343l", Description = "More electronics!", Quantity = 1, UnitPrice = 12.09M, PurchaseOrder = po, Received = false };
-            po.LineItems.Add(li);
-            purchaseOrders.Add(po);
-
-            po = new PurchaseOrder() { Id = 2, PurchaseOrderNumber = 105966, PODate = new DateTime(2011, 7, 16), PaymentTerms = "Net 30", FreightTerms = "Bulk", TrackingNumber = "TTS000003501256", ShipVia = "Ground", LineItems = new List<LineItem>() };
-            li = new LineItem() { Id = 4, AccountingInfo = "1234 / 123412344 / 123123", ItemNumber = "asdf12343l", Description = "Some electronics!", Quantity = 2, UnitPrice = 55.34M, PurchaseOrder = po, Received = true };
-            po.LineItems.Add(li);
-            li = new LineItem() { Id = 5, AccountingInfo = "1234 / 123412344 / 123123", ItemNumber = "asdf12343l", Description = "More electronics!", Quantity = 1, UnitPrice = 12.09M, PurchaseOrder = po, Received = false };
-            po.LineItems.Add(li);
-            li = new LineItem() { Id = 6, AccountingInfo = "1234 / 123412344 / 123123", ItemNumber = "asdf12343l", Description = "Best electronics!", Quantity = 100, UnitPrice = 0.89M, PurchaseOrder = po, Received = true };
-            po.LineItems.Add(li);
-            li = new LineItem() { Id = 7, AccountingInfo = "1234 / 123412344 / 123123", ItemNumber = "asdf12343l", Description = "Worst electronics!", Quantity = 12, UnitPrice = 0.01M, PurchaseOrder = po, Received = false };
-            po.LineItems.Add(li);
-            purchaseOrders.Add(po);
-        }
+        VendorRepository VendorRepository = new VendorRepository();
+        GroupRepository GroupRepository = new GroupRepository();
 
         //
         // GET: /PurchaseOrder/
 
         public ActionResult Index()
         {
-            SetUpTestData();
-            List<PurchaseOrder> sortedOrders = purchaseOrders.OrderByDescending(x => x.Id).ToList();
-
             //view the 10 or 20 most recently added orders
-            return View(sortedOrders);
+            return View(PurchaseOrderRepository.List().OrderByDescending(x => x.PurchaseOrderNumberDisplay).ToList());
         }
 
         //
@@ -65,10 +29,12 @@ namespace QuickReceipt.Controllers
 
         public ActionResult Details(int id)
         {
-            SetUpTestData();
-            var po = (from p in purchaseOrders
-                      where p.PurchaseOrderNumber == id
-                      select p).FirstOrDefault();
+            var po = PurchaseOrderRepository.Find(id);
+
+            if (po == null)
+            {
+                RedirectToAction("Index");
+            }
 
             return View(po);
         }
@@ -91,12 +57,36 @@ namespace QuickReceipt.Controllers
             }
         }
 
-        public ActionResult Scan()
+        //http://localhost/QuickReceipt/PurchaseOrder/Associate?QRCode=q8ZBf
+        public ActionResult Associate(string QRCode)
         {
-            ViewBag.Profiles = ProfileRepository.List();
+            //qrcode doesn't exist - create
+            var existingQR = PurchaseOrderRepository.Find(QRCode);
 
-            PurchaseOrder po = new PurchaseOrder();
-            return View(po);
+            if (existingQR == null)
+            {
+                existingQR = PurchaseOrderRepository.Save(new PurchaseOrder() { QRCode = QRCode });
+            }
+
+            //qrcode exists and has associated PO - go to Details
+            if (existingQR.PurchaseOrderNumber.HasValue)
+            {
+                return RedirectToAction("Details", "PurchaseOrder", new { id = existingQR.PurchaseOrderNumber.Value });
+            }
+
+            //qrcode exists but no PO Associated - go to Scan
+            return RedirectToAction("Scan", "PurchaseOrder", new { QRCode = QRCode });
+        }
+
+        //http://localhost/QuickReceipt/PurchaseOrder/Scan?QRCode=q8ZBf
+        public ActionResult Scan(string QRCode)
+        {
+            var existingQR = PurchaseOrderRepository.Find(QRCode);
+            ViewBag.Profiles = ProfileRepository.List();
+            ViewBag.Vendors = VendorRepository.List();
+            ViewBag.Groups = GroupRepository.List();
+
+            return View(existingQR);
         }
 
         [HttpPost]
@@ -105,7 +95,19 @@ namespace QuickReceipt.Controllers
             if (po.PurchaseOrderNumber > 0)
             {
                 //associate QR Code to PO
-                return RedirectToAction("Index");
+                try
+                {
+                    if (ModelState.IsValid)
+                    {
+                        po = PurchaseOrderRepository.Save(po);
+
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return View("Error", new HandleErrorInfo(ex, "PurchaseOrder", "Scan"));
+                }
             }
 
             return View(po);
