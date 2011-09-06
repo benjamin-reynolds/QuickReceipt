@@ -1,0 +1,36 @@
+﻿@model ICollection<string>
+
+@{
+    ViewBag.Title = "Quick Receipt | Unused QR Codes";
+}
+
+<div align="center" data-role="controlgroup" data-type="horizontal">
+    <a href="/QuickReceipt/QRCode/Build?numToBuild=10" data-role="button" data-icon="plus">Add 10 New QR Codes</a>
+    <a href="/QuickReceipt/QRCode/Build?numToBuild=50" data-role="button" data-icon="plus">Add 50 New QR Codes</a>
+</div>
+
+<div align="center" data-role="controlgroup" data-type="horizontal">
+    <a href="/QuickReceipt/QRCode/PrinterFriendlyIndex?numPages=1" data-role="button" data-icon="grid">Printer Friendly Version (One Page)</a>
+    <a href="/QuickReceipt/QRCode/PrinterFriendlyIndex?numPages=500" data-role="button" data-icon="grid">Printer Friendly Version (All)</a>
+</div>
+
+<h2 align="center">Unused QR Codes</h2>
+<div align="center">There are currently @ViewBag.UnusedQRCodeCount unused QR Codes</div>
+<table align="center">
+@for (int i = 6; i - 6 < Model.Count(); i++)
+{
+    string qrCodeUrl = Model.ElementAt(i - 6);
+    if (i % 6 == 0)
+    {
+        @:<tr>
+    }
+
+    <td><img src="http://qr.tbs.io/?u=@qrCodeUrl" alt="" width="100" height="100"></td>
+
+    if (i % 6 == 5)
+    {
+        @:</tr>
+    }
+}
+</table>
+

@@ -1,0 +1,25 @@
+﻿@model ICollection<string>
+
+@{
+    ViewBag.Title = "Build";
+}
+
+<table align="center">
+@for (int i = 5; i - 5 < Model.Count(); i++)
+{
+    string qrCodeUrl = Model.ElementAt(i - 5);
+    if (i % 5 == 0)
+    {
+        @:<tr>
+    }
+
+    <td><img src="http://qr.tbs.io/?u=@qrCodeUrl" alt="" width="100" height="100"></td>
+
+    if (i % 5 == 4)
+    {
+        @:</tr>
+    }
+}
+</table>
+
+

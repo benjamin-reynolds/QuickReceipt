@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Printer Friendly Unused QR Codes</title>
+</head>
+<body>
+@model ICollection<string>
+@{
+    Layout = null;
+}
+
+           
+<table align="center">
+@for (int i = 6; i - 6 < Model.Count(); i++)
+{
+    string qrCodeUrl = Model.ElementAt(i - 6);
+    if (i % 6 == 0)
+    {
+        @:<tr>
+    }
+
+    <td><img src="http://qr.tbs.io/?u=@qrCodeUrl" alt="" width="150" height="150"></td>
+
+    if (i % 6 == 5)
+    {
+        @:</tr>
+    }
+}
+</table>
+</body>
+</html>
