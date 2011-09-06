@@ -21,10 +21,12 @@
   </EntityType>
   <EntityType Name="PurchaseOrder">
     <Key>
-      <PropertyRef Name="QRCodeId" />
+      <PropertyRef Name="POId" />
     </Key>
-    <Property Name="QRCodeId" Type="nvarchar" Nullable="false" MaxLength="255" />
-    <Property Name="PurchaseOrderId" Type="int" />
+    <Property Name="POId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="QRCodeId" Type="nvarchar" MaxLength="255" />
+    <Property Name="QRCodeShortURL" Type="nvarchar" MaxLength="255" />
+    <Property Name="PurchaseOrderNumber" Type="int" />
     <Property Name="ProfileId" Type="int" />
     <Property Name="VendorId" Type="int" />
     <Property Name="GroupId" Type="int" />

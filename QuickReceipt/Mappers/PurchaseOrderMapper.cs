@@ -38,8 +38,9 @@ namespace QuickReceipt.Mappers
         public EFModel.PurchaseOrder Map(PurchaseOrder p)
         {
             EFModel.PurchaseOrder po = new EFModel.PurchaseOrder();
-            po.QRCodeId = p.QRCode;
-            po.PurchaseOrderId = p.PurchaseOrderNumber;
+            po.QRCodeId = p.QRCodeId;
+            po.QRCodeShortURL = p.QRCodeShortURL;
+            po.PurchaseOrderNumber = p.PurchaseOrderNumber;
             po.GroupQRCode = p.GroupQRCode;
             po.ProfileId = (p.Profile == null ? null : (int?)p.Profile.Id);
             po.GroupId = (p.Group == null ? null : (int?)p.Group.Id);
@@ -51,8 +52,10 @@ namespace QuickReceipt.Mappers
         public PurchaseOrder Map(EFModel.PurchaseOrder p)
         {
             PurchaseOrder po = new PurchaseOrder();
-            po.QRCode = p.QRCodeId;
-            po.PurchaseOrderNumber = p.PurchaseOrderId;
+            po.POId = p.POId;
+            po.QRCodeShortURL = p.QRCodeShortURL;
+            po.QRCodeId = p.QRCodeId;
+            po.PurchaseOrderNumber = p.PurchaseOrderNumber;
             po.GroupQRCode = p.GroupQRCode;
             po.Profile = (p.ProfileId.HasValue ? ProfileRepository.List().Where(x => x.Id == p.ProfileId.Value).First() : null);
             po.Group = (p.GroupId.HasValue ? GroupRepository.List().Where(x => x.Id == p.GroupId.Value).First() : null);

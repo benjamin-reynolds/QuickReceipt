@@ -352,12 +352,12 @@ namespace EFModel
         /// <summary>
         /// Create a new PurchaseOrder object.
         /// </summary>
-        /// <param name="qRCodeId">Initial value of the QRCodeId property.</param>
+        /// <param name="pOId">Initial value of the POId property.</param>
         /// <param name="groupQRCode">Initial value of the GroupQRCode property.</param>
-        public static PurchaseOrder CreatePurchaseOrder(global::System.String qRCodeId, global::System.Boolean groupQRCode)
+        public static PurchaseOrder CreatePurchaseOrder(global::System.Int32 pOId, global::System.Boolean groupQRCode)
         {
             PurchaseOrder purchaseOrder = new PurchaseOrder();
-            purchaseOrder.QRCodeId = qRCodeId;
+            purchaseOrder.POId = pOId;
             purchaseOrder.GroupQRCode = groupQRCode;
             return purchaseOrder;
         }
@@ -370,6 +370,33 @@ namespace EFModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Int32 POId
+        {
+            get
+            {
+                return _POId;
+            }
+            set
+            {
+                if (_POId != value)
+                {
+                    OnPOIdChanging(value);
+                    ReportPropertyChanging("POId");
+                    _POId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("POId");
+                    OnPOIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _POId;
+        partial void OnPOIdChanging(global::System.Int32 value);
+        partial void OnPOIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String QRCodeId
         {
             get
@@ -378,14 +405,11 @@ namespace EFModel
             }
             set
             {
-                if (_QRCodeId != value)
-                {
-                    OnQRCodeIdChanging(value);
-                    ReportPropertyChanging("QRCodeId");
-                    _QRCodeId = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("QRCodeId");
-                    OnQRCodeIdChanged();
-                }
+                OnQRCodeIdChanging(value);
+                ReportPropertyChanging("QRCodeId");
+                _QRCodeId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("QRCodeId");
+                OnQRCodeIdChanged();
             }
         }
         private global::System.String _QRCodeId;
@@ -397,24 +421,48 @@ namespace EFModel
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> PurchaseOrderId
+        public global::System.String QRCodeShortURL
         {
             get
             {
-                return _PurchaseOrderId;
+                return _QRCodeShortURL;
             }
             set
             {
-                OnPurchaseOrderIdChanging(value);
-                ReportPropertyChanging("PurchaseOrderId");
-                _PurchaseOrderId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PurchaseOrderId");
-                OnPurchaseOrderIdChanged();
+                OnQRCodeShortURLChanging(value);
+                ReportPropertyChanging("QRCodeShortURL");
+                _QRCodeShortURL = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("QRCodeShortURL");
+                OnQRCodeShortURLChanged();
             }
         }
-        private Nullable<global::System.Int32> _PurchaseOrderId;
-        partial void OnPurchaseOrderIdChanging(Nullable<global::System.Int32> value);
-        partial void OnPurchaseOrderIdChanged();
+        private global::System.String _QRCodeShortURL;
+        partial void OnQRCodeShortURLChanging(global::System.String value);
+        partial void OnQRCodeShortURLChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PurchaseOrderNumber
+        {
+            get
+            {
+                return _PurchaseOrderNumber;
+            }
+            set
+            {
+                OnPurchaseOrderNumberChanging(value);
+                ReportPropertyChanging("PurchaseOrderNumber");
+                _PurchaseOrderNumber = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PurchaseOrderNumber");
+                OnPurchaseOrderNumberChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PurchaseOrderNumber;
+        partial void OnPurchaseOrderNumberChanging(Nullable<global::System.Int32> value);
+        partial void OnPurchaseOrderNumberChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

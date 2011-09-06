@@ -6,28 +6,44 @@
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />
+
+@*    <script src="http://code.jquery.com/jquery-1.4.3.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js" type="text/javascript"></script>*@
+
+    <script src="http://code.jquery.com/jquery-1.4.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(document).bind("mobileinit", function () {
+            $.extend($.mobile, {
+                ajaxLinksEnabled: false,
+                ajaxFormsEnabled: false
+            });
+        });
+
+    </script>
+    <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js" type="text/javascript"></script>
+
 </head>
 <body>
-    <div class="page">
+    <div data-role="page" data-theme="b">
         <header>
-            <div id="title">
-                <h1>TTS QR Code Demo</h1>
+            <div data-role="header" data-theme="b">
+                <h1>Quick Receipt</h1>
             </div>
-            <div id="logindisplay">
-            <text>Welcome!</text>
-            </div>
-            <nav>
-                <ul id="menu">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Purchase Orders", "Index", "PurchaseOrder")</li>
-                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                </ul>
-            </nav>
         </header>
         <section id="main">
+            <style>
+                .ui-page { background: white;}
+            </style>
             @RenderBody()
         </section>
-        <footer>
+        <footer align="">
+            <div data-role="footer" class="ui-bar" data-theme="b" style="position:absolute; bottom: 0; left:0;">
+                <a href="/QuickReceipt/" data-role="button">Home</a>
+                <a href="/QuickReceipt/PurchaseOrder" data-role="button">Purchase Orders</a>
+                <a href="/QuickReceipt/Admin" data-role="button">Admin</a>
+            </div>
         </footer>
     </div>
 </body>

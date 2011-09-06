@@ -1,17 +1,18 @@
 ﻿@model IEnumerable<QuickReceipt.Models.PurchaseOrder>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quick Receipt | Purchase Orders";
 }
 
-<h2>Purchase Orders</h2>
+<h2 align="center">Purchase Orders</h2>
 
-@Html.ActionLink("Associate PO to QR Code", "Scan", "PurchaseOrder")
-<br />
-<br />
+
 <div>
-<table>
+<table align="center">
     <tr>
+        <th>
+            QR Code
+        </th>
         <th>
             PO #
         </th>
@@ -35,10 +36,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(item.PurchaseOrderNumber.ToString(), "Details", new { id=item.PurchaseOrderNumber })
+            <div data-role="controlgroup" data-type="horizontal">
+                <a href="/QuickReceipt/PurchaseOrder/Details/@item.POId">
+                <img src="http://qr.tbs.io/?u=@item.QRCodeShortURL" alt="" width="100" height="100">
+                </a>
+            </div>
         </td>
         <td>
+            @if(item.PurchaseOrderNumber.HasValue)
+            {
+                <div data-role="controlgroup" data-type="horizontal">
+                    <a href="/QuickReceipt/PurchaseOrder/Details/@item.POId" data-role="button">@item.PurchaseOrderNumberDisplay</a>
+                </div>
+            }
+        </td>
+        <td>
+        @if (item.PODate != DateTime.MinValue)
+        {
             @Html.DisplayFor(modelItem => item.PODate)
+        }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PaymentTerms)

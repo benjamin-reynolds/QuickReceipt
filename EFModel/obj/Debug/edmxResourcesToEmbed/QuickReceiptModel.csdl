@@ -22,10 +22,12 @@
   </EntityType>
   <EntityType Name="PurchaseOrder">
     <Key>
-      <PropertyRef Name="QRCodeId" />
+      <PropertyRef Name="POId" />
     </Key>
-    <Property Type="String" Name="QRCodeId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Type="Int32" Name="PurchaseOrderId" />
+    <Property Type="Int32" Name="POId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="QRCodeId" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="QRCodeShortURL" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="PurchaseOrderNumber" />
     <Property Type="Int32" Name="ProfileId" />
     <Property Type="Int32" Name="VendorId" />
     <Property Type="Int32" Name="GroupId" />

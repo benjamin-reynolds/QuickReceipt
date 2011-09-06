@@ -7,10 +7,10 @@ C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ShippingQRWeb\obj\Debug\Shipping
 C:\Users\breynolds.TURNER\Desktop\ShippingQRWeb\ShippingQRWeb\obj\Debug\ShippingQRWeb.pdb
 C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\bin\ShippingQRWeb.dll
 C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\bin\ShippingQRWeb.pdb
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\bin\EFModel.dll
 C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\bin\EntityFramework.dll
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\bin\EFModel.pdb
 C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\bin\EntityFramework.xml
 C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\obj\Debug\ShippingQRWeb.dll
 C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\obj\Debug\ShippingQRWeb.pdb
-C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\bin\EFModel.dll
-C:\Users\breynolds.TURNER\Desktop\QuickReceipt\QuickReceipt\bin\EFModel.pdb

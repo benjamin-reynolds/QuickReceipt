@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Profiles</h2>
+<h2 align="center">Profiles</h2>
 
 <p>
-    @Html.ActionLink("Add a new Profile", "Create")
+    <a href="/QuickReceipt/Profile/Create" data-role="button" data-icon="plus">Add</a>
 </p>
-<table>
+<table align="center">
     <tr>
         <th></th>
         <th>
@@ -32,8 +32,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <div data-role="controlgroup" data-type="vertical">
+                <a href="/QuickReceipt/Profile/Edit/@item.Id" data-role="button" data-icon="grid">Edit</a>
+                <a href="/QuickReceipt/Profile/Delete/@item.Id" data-role="button" data-icon="delete">Delete</a>
+            </div>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)

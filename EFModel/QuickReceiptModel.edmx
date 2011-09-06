@@ -26,10 +26,12 @@
         </EntityType>
         <EntityType Name="PurchaseOrder">
           <Key>
-            <PropertyRef Name="QRCodeId" />
+            <PropertyRef Name="POId" />
           </Key>
-          <Property Name="QRCodeId" Type="nvarchar" Nullable="false" MaxLength="255" />
-          <Property Name="PurchaseOrderId" Type="int" />
+          <Property Name="POId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QRCodeId" Type="nvarchar" MaxLength="255" />
+          <Property Name="QRCodeShortURL" Type="nvarchar" MaxLength="255" />
+          <Property Name="PurchaseOrderNumber" Type="int" />
           <Property Name="ProfileId" Type="int" />
           <Property Name="VendorId" Type="int" />
           <Property Name="GroupId" Type="int" />
@@ -73,10 +75,12 @@
         </EntityType>
         <EntityType Name="PurchaseOrder">
           <Key>
-            <PropertyRef Name="QRCodeId" />
+            <PropertyRef Name="POId" />
           </Key>
-          <Property Type="String" Name="QRCodeId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="PurchaseOrderId" />
+          <Property Type="Int32" Name="POId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="QRCodeId" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="QRCodeShortURL" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PurchaseOrderNumber" />
           <Property Type="Int32" Name="ProfileId" />
           <Property Type="Int32" Name="VendorId" />
           <Property Type="Int32" Name="GroupId" />
@@ -120,12 +124,14 @@
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-                <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+                <ScalarProperty Name="PurchaseOrderNumber" ColumnName="PurchaseOrderNumber" />
+                <ScalarProperty Name="QRCodeShortURL" ColumnName="QRCodeShortURL" />
                 <ScalarProperty Name="QRCodeId" ColumnName="QRCodeId" />
+                <ScalarProperty Name="POId" ColumnName="POId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -146,11 +152,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="QuickReceiptModel">
-        <EntityTypeShape EntityType="QuickReceiptModel.Profile" Width="1.5" PointX="0.75" PointY="0.75" Height="2.172587890625" />
-        <EntityTypeShape EntityType="QuickReceiptModel.PurchaseOrder" Width="1.5" PointX="3" PointY="0.75" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="QuickReceiptModel.Profile" Width="1.5" PointX="0.75" PointY="1.125" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="QuickReceiptModel.PurchaseOrder" Width="1.5" PointX="3" PointY="1" Height="2.7494921874999996" />
         <AssociationConnector Association="QuickReceiptModel.FK_PurchaseOrder_Profile" >
-          <ConnectorPoint PointX="2.25" PointY="1.9324446614583328" />
-          <ConnectorPoint PointX="3" PointY="1.9324446614583328" />
+          <ConnectorPoint PointX="2.25" PointY="2.3074446614583328" />
+          <ConnectorPoint PointX="3" PointY="2.3074446614583328" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

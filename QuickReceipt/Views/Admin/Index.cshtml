@@ -1,9 +1,8 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quick Receipt | Admin";
 }
 
-<h2>Admin</h2>
-
-<ul>
+<ul data-role="listview" data-theme="b">
     <li>@Html.ActionLink("Profiles", "Index", "Profile")</li>
+    <li>@Html.ActionLink("QR Codes", "Index", "QRCode")</li>
 </ul>

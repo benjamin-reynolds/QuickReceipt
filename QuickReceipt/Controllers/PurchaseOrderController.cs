@@ -21,7 +21,7 @@ namespace QuickReceipt.Controllers
         public ActionResult Index()
         {
             //view the 10 or 20 most recently added orders
-            return View(PurchaseOrderRepository.List().OrderByDescending(x => x.PurchaseOrderNumberDisplay).ToList());
+            return View(PurchaseOrderRepository.List(10).OrderByDescending(x => x.PurchaseOrderNumber).ToList());
         }
 
         //
@@ -44,7 +44,7 @@ namespace QuickReceipt.Controllers
         {
             try
             {
-                if (po.Id != 0)
+                if (po.POId != 0)
                 {
                     return RedirectToAction("Index");
                 }
@@ -57,31 +57,31 @@ namespace QuickReceipt.Controllers
             }
         }
 
-        //http://localhost/QuickReceipt/PurchaseOrder/Associate?QRCode=q8ZBf
-        public ActionResult Associate(string QRCode)
+        //http://localhost/QuickReceipt/PurchaseOrder/Associate?poid=1
+        public ActionResult Associate(int poid)
         {
             //qrcode doesn't exist - create
-            var existingQR = PurchaseOrderRepository.Find(QRCode);
+            var existingQR = PurchaseOrderRepository.Find(poid);
 
             if (existingQR == null)
             {
-                existingQR = PurchaseOrderRepository.Save(new PurchaseOrder() { QRCode = QRCode });
+                return View("Error", new HandleErrorInfo(new Exception("Unable to find Purchase Order with Id " + poid.ToString()), "PurchaseOrder", "Associate"));
             }
 
             //qrcode exists and has associated PO - go to Details
             if (existingQR.PurchaseOrderNumber.HasValue)
             {
-                return RedirectToAction("Details", "PurchaseOrder", new { id = existingQR.PurchaseOrderNumber.Value });
+                return RedirectToAction("Details", "PurchaseOrder", new { id = existingQR.POId });
             }
 
             //qrcode exists but no PO Associated - go to Scan
-            return RedirectToAction("Scan", "PurchaseOrder", new { QRCode = QRCode });
+            return RedirectToAction("Scan", "PurchaseOrder", new { POId = poid });
         }
 
-        //http://localhost/QuickReceipt/PurchaseOrder/Scan?QRCode=q8ZBf
-        public ActionResult Scan(string QRCode)
+        //http://localhost/QuickReceipt/PurchaseOrder/Scan?poid=1
+        public ActionResult Scan(int poid)
         {
-            var existingQR = PurchaseOrderRepository.Find(QRCode);
+            var existingQR = PurchaseOrderRepository.Find(poid);
             ViewBag.Profiles = ProfileRepository.List();
             ViewBag.Vendors = VendorRepository.List();
             ViewBag.Groups = GroupRepository.List();

@@ -1,0 +1,7 @@
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\DMZHost\DMZHost\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\DMZHost\DMZHost\bin\DMZHost.dll
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\DMZHost\DMZHost\bin\DMZHost.pdb
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\DMZHost\DMZHost\bin\EntityFramework.dll
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\DMZHost\DMZHost\bin\EntityFramework.xml
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\DMZHost\DMZHost\obj\Debug\DMZHost.dll
+C:\Users\breynolds.TURNER\Desktop\QuickReceipt\DMZHost\DMZHost\obj\Debug\DMZHost.pdb

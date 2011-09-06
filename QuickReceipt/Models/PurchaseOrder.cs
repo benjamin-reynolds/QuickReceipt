@@ -8,9 +8,11 @@ namespace QuickReceipt.Models
 {
     public class PurchaseOrder
     {
-        public int Id { get; set; }
+        public int POId { get; set; }
 
-        public string QRCode { get; set; }
+        public string QRCodeId { get; set; }
+
+        public string QRCodeShortURL { get; set; }
 
         [Required(ErrorMessage="You must associate a Purchase Order Number")]
         public int? PurchaseOrderNumber { get; set; }
@@ -29,7 +31,7 @@ namespace QuickReceipt.Models
             }
         }
 
-        public DateTime PODate { get; set; }
+        public DateTime? PODate { get; set; }
 
         public string PaymentTerms { get; set; }
 
